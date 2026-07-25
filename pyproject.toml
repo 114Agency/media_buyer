@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "apscheduler>=3.11.2",
+    "dynaconf>=3.3.3",
     "facebook-business>=25.0.2",
     "fastapi>=0.137.2",
     "httpx>=0.28.1",

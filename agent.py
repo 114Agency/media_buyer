@@ -6,6 +6,8 @@ from datetime import datetime
 from meta_client import MetaAdsClient
 from langfuse import get_client, observe, propagate_attributes
 import json
+# 2. On importe Dynaconf
+from config import settings
 
 langfuse = get_client()
 
@@ -18,8 +20,10 @@ class MediaBuyerAgent:
         self.target_cpl = 15.0 
         
         # Telegram Credentials
-        self.telegram_token = os.getenv("TELEGRAM_BOT_TOKEN")
-        self.telegram_chat_id = os.getenv("TELEGRAM_CHAT_ID")
+       # 3. Le seuil CPL et Telegram sont pilotés par Dynaconf
+        self.target_cpl = settings.client.get("target_cpl", 15.0) 
+        self.telegram_token = settings.telegram.get("bot_token")
+        self.telegram_chat_id = settings.telegram.get("chat_id")
         
     # Le décorateur Tenacity : essaie 3 fois maximum, en attendant 2s, puis 4s, puis 8s entre chaque échec.
     @retry(
@@ -367,8 +371,9 @@ class MediaBuyerAgent:
         }
         
         # 3. L'envoi réseau vers le serveur de l'Analyste (Port 8005 par exemple)
-        ANALYST_WEBHOOK_URL = os.getenv(
-            "ANALYST_WEBHOOK_URL",
+        # 4. On utilise settings pour l'URL au lieu de os.getenv
+        ANALYST_WEBHOOK_URL = settings.urls.get(
+            "analyst_webhook",
             "http://127.0.0.1:8005/analyst/receive-weekly-data"
         )
         

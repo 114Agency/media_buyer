@@ -1,0 +1,15 @@
+[meta]
+app_id = "@format {env[META_APP_ID]}"
+app_secret = "@format {env[META_APP_SECRET]}"
+access_token = "@format {env[META_ACCESS_TOKEN]}"
+ad_account_id = "@format {env[META_AD_ACCOUNT_ID]}"
+
+[telegram]
+bot_token = "@format {env[TELEGRAM_BOT_TOKEN]}"
+chat_id = "@format {env[TELEGRAM_CHAT_ID]}"
+
+[urls]
+analyst_webhook = "@format {env[ANALYST_WEBHOOK_URL]}"
+
+[client]
+target_cpl = 15.0

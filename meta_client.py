@@ -15,6 +15,9 @@ from facebook_business.adobjects.customaudience import CustomAudience
 # 🟢 IMPORT POUR LA RÉSILIENCE RÉSEAU
 from tenacity import retry, stop_after_attempt, wait_exponential
 
+# 2. On importe Dynaconf
+from config import settings
+
 load_dotenv() 
 
 class MetaAdsClient:
@@ -26,11 +29,11 @@ class MetaAdsClient:
     def __init__(self):
         """Initialise et authentifie le client Meta Ads via le fichier .env."""
         
-        self.app_id = os.getenv("META_APP_ID")
-        self.app_secret = os.getenv("META_APP_SECRET")
-        self.access_token = os.getenv("META_ACCESS_TOKEN")
-        self.account_id = os.getenv("META_AD_ACCOUNT_ID") 
-
+        # 3. On remplace os.getenv par settings.meta.get()
+        self.app_id = settings.meta.get("app_id")
+        self.app_secret = settings.meta.get("app_secret")
+        self.access_token = settings.meta.get("access_token")
+        self.account_id = settings.meta.get("ad_account_id")
         # Sécurité : vérifier que les clés sont bien chargées
         if not all([self.app_id, self.app_secret, self.access_token, self.account_id]):
             raise ValueError("❌ Variables d'environnement Meta manquantes dans le .env !")

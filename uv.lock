@@ -273,6 +273,15 @@ wheels = [
 ]
 
 [[package]]
+name = "dynaconf"
+version = "3.3.3"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/da/8e/79e2ab9718fa632b764ca08cf7321690819a01fad523e2b70cbd5591e99c/dynaconf-3.3.3.tar.gz", hash = "sha256:1740ca23ff9da042531f507f664cb5b79b0e5120b65f98b74e1387491b6d078a", size = 328391, upload-time = "2026-07-22T21:26:55.135Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bb/f3/8ddb29d4f710d3b2f67ed289f3c108ca10a4d3ed7574a424fe6a5c0295a3/dynaconf-3.3.3-py3-none-any.whl", hash = "sha256:1fc189416e7ddadc0c3bbebad8390d15219a68bb07d24d051478233f08f272a6", size = 270319, upload-time = "2026-07-22T21:26:53.511Z" },
+]
+
+[[package]]
 name = "facebook-business"
 version = "25.0.2"
 source = { registry = "https://pypi.org/simple" }
@@ -461,6 +470,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "apscheduler" },
+    { name = "dynaconf" },
     { name = "facebook-business" },
     { name = "fastapi" },
     { name = "httpx" },
@@ -475,6 +485,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "apscheduler", specifier = ">=3.11.2" },
+    { name = "dynaconf", specifier = ">=3.3.3" },
     { name = "facebook-business", specifier = ">=25.0.2" },
     { name = "fastapi", specifier = ">=0.137.2" },
     { name = "httpx", specifier = ">=0.28.1" },
